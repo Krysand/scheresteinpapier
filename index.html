@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Schere Stein Papier</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+      function computerPlay(){
+        var possiblePlays = ['stein','schere', 'papier'];
+        return possiblePlays[Math.floor(Math.random() * possiblePlays.length)];
+      }
+
+      function gameRound(playerSelection, computerSelection){
+          playerSelection = playerSelection.toLowerCase();
+          if(playerSelection == computerSelection){
+              //return "Nobody wins - try again!"
+              return false;
+          }
+
+          let userWins = false;
+
+          switch (playerSelection){
+                case "stein":
+                    if(computerSelection == "schere"){
+                        userWins = true;
+                    }
+                    break;
+                case "schere":
+                    if(computerSelection == "papier"){
+                            userWins = true;
+                    }
+                    break;
+                case "papier":
+                    if(computerSelection == "stein"){
+                            userWins = true;
+                    }
+                    break;
+                default:
+                 break;
+          }
+
+          if(userWins){
+              //Return "Congrats! You won!" + playerSelection + " schlägt " + computerSelection;
+              return true;
+          }else{
+              //eturn "Oops! Computer won! " + computerSelection + " schlägt " + playerSelection;
+              return false;
+          }
+      }
+
+      function game(){
+          let wonGames = 0;
+          for (let index = 0; index < 5; index++) {
+              let playerSelection = prompt();
+              if(gameRound(playerSelection, computerPlay())){
+                  wonGames++;
+              }
+          }
+          console.log("You won " + wonGames + " times!")
+      }
+  </script>
+</body>
+</html>
